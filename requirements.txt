@@ -2,5 +2,6 @@ asgiref==3.5.0
 Django==4.0.3
 django-environ==0.8.1
 django-taggit==2.1.0
+Markdown==3.3.6
 sqlparse==0.4.2
 tzdata==2022.1
