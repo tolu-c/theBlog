@@ -4,7 +4,7 @@ django Blog
 
 ### superuser details
 
-* username: `admnin`
+* username: `admin`
 * email: `admin@theblog.com`
 * password: `asdf:lkj`
   
