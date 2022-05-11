@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import EmailPostForm, CommentForm, SearchForm
+from .forms import EmailPostForm, CommentForm, PostAddform, SearchForm
 from django.core.mail import send_mail
 from taggit.models import Tag
 from django.db.models import Count
@@ -25,7 +25,8 @@ class PostListView(ListView):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'blog/post/add_post.html'
-    fields = '__all__'
+    # fields = '__all__'
+    form_class = PostAddform
 
 
 class PostEditView(UpdateView):

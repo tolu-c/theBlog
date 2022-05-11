@@ -9,6 +9,11 @@ Post{% endblock %} {% block content %}
     {{form.as_p}}
     <button type="submit">Add</button>
   </form>
+
+  <script>
+    let authorId = '{{ user.id }}'
+    document.getElementById('author').value = authorId
+  </script>
 {% else %}
   <h2>Error 401 - Unauthorized!</h2>
   <p>
