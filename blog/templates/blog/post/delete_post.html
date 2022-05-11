@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %} {% load blog_tags %} {% block title %}Delete
+{{ post.title }}{% endblock %} {% block content %}
+
+<h2>Delete {{ post.title }}</h2>
+
+<form method="POST">
+  {% csrf_token %}
+  <strong>Are you sure you wanna delete {{ post.title }}?</strong>
+  <br />
+  <button type="submit">delete</button>
+</form>
+
+{% endblock content %}

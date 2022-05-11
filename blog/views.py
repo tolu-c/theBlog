@@ -1,5 +1,6 @@
 from email.mime import message
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EmailPostForm, CommentForm, SearchForm
@@ -9,7 +10,7 @@ from django.db.models import Count
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 # class based views
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 # Create your views here.
 
@@ -31,6 +32,12 @@ class PostEditView(UpdateView):
     model = Post
     template_name = 'blog/post/edit_post.html'
     fields = '__all__'
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'blog/post/delete_post.html'
+    success_url = reverse_lazy('blog:post_list')
 
 
 def post_list(request, tag_slug=None):
