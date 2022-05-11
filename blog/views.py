@@ -9,7 +9,7 @@ from django.db.models import Count
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 # class based views
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 # Create your views here.
 
@@ -19,6 +19,12 @@ class PostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 5
     template_name = 'blog/post/list.html'
+
+
+class PostCreateView(CreateView):
+    model = Post
+    template_name = 'blog/post/add_post.html'
+    fields = '__all__'
 
 
 def post_list(request, tag_slug=None):
@@ -91,7 +97,8 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            search_vector = SearchVector('title', weight='A') + SearchVector('body', weight='B')
+            search_vector = SearchVector(
+                'title', weight='A') + SearchVector('body', weight='B')
             search_query = SearchQuery(query)
             results = Post.published.annotate(
                 search=search_vector, rank=SearchRank(search_vector, search_query)).filter(rank__gte=0.3).order_by('-rank')

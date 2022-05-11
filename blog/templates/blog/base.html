@@ -7,6 +7,13 @@
     {% comment %} <link href="{% static "css/blog.css" %}" rel="stylesheet"> {% endcomment %}
   </head>
   <body>
+    <span>
+      <a href="{% url 'blog:post_list' %}">Back Home</a>
+    </span> - 
+    <span>
+      <a href="{% url 'blog:post_new' %}">Create new post</a>
+    </span>
+
     <p>This is my blog. I've written {% total_posts %} posts so far.</p>
     <p>
       <a href="{% url "blog:post_feed" %}">Subscribe to my RSS feed</a>

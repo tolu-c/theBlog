@@ -1,5 +1,12 @@
 from django import forms
-from .models import Comment
+from .models import Comment, Post
+
+
+class PostAddform(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title', 'slug', 'author', 'body',
+                  'publish', 'status', 'tags')
 
 
 class EmailPostForm(forms.Form):
