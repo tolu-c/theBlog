@@ -6,7 +6,7 @@ Post{% endblock %} {% block content %}
 <form method="POST">
   {% csrf_token %} 
   {{form.as_p}}
-  <button type="submit">add</button>
+  <button type="submit">Add</button>
 </form>
 
 {% endblock content %}
