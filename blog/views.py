@@ -9,7 +9,7 @@ from django.db.models import Count
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 
 # class based views
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 
 # Create your views here.
 
@@ -24,6 +24,12 @@ class PostListView(ListView):
 class PostCreateView(CreateView):
     model = Post
     template_name = 'blog/post/add_post.html'
+    fields = '__all__'
+
+
+class PostEditView(UpdateView):
+    model = Post
+    template_name = 'blog/post/edit_post.html'
     fields = '__all__'
 
 

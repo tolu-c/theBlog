@@ -18,7 +18,7 @@
             {% endfor %}
         </p>
         </h2>
-        <p>Published {{ post.publish }} by {{ post.author.first_name }}</p>
+        <p>Published {{ post.publish }} by {{ post.author.first_name }} {{ post.author.last_name }}</p>
         {{ post.body|markdown|truncatewords_html:30 }} 
     {% endfor %} 
 

@@ -84,21 +84,21 @@ WSGI_APPLICATION = 'theBlog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# postgresql
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME'),
-        'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# postgresql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('NAME'),
+#         'USER': env('USER'),
+#         'PASSWORD': env('PASSWORD'),
+#     }
+# }
 
 
 # Password validation
