@@ -1,12 +1,19 @@
 {% extends "blog/base.html" %} {% load blog_tags %} {% block title %}Create New
 Post{% endblock %} {% block content %}
 
-<h2>Add Blog Posts</h2>
+{% if user.is_authenticated %}
+  <h2>Add Blog Posts</h2>
 
-<form method="POST">
-  {% csrf_token %} 
-  {{form.as_p}}
-  <button type="submit">Add</button>
-</form>
+  <form method="POST">
+    {% csrf_token %} 
+    {{form.as_p}}
+    <button type="submit">Add</button>
+  </form>
+{% else %}
+  <h2>Error 401 - Unauthorized!</h2>
+  <p>
+    <a href="{% url 'blog:post_list' %}">Back Home</a>
+  </p>
+{% endif %}
 
 {% endblock content %}

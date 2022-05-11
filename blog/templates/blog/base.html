@@ -9,10 +9,27 @@
   <body>
     <span>
       <a href="{% url 'blog:post_list' %}">Back Home</a>
-    </span> - 
-    <span>
-      <a href="{% url 'blog:post_new' %}">Create new post</a>
     </span>
+    {% if user.is_authenticated %}
+       - 
+       <span>
+        <a href="{% url 'blog:post_new' %}">Create new post</a>
+      </span> - 
+      <span>
+        <a href="{% url 'logout' %}">Log out</a>
+      </span>
+    {% else %}
+       - 
+      <span>
+        <a href="{% url 'members:register' %}">Register</a>
+      </span> - 
+      <span>
+        <a href="{% url 'login' %}">Log in</a>
+      </span>
+
+    {% endif %}
+   
+    
 
     <p>This is my blog. I've written {% total_posts %} posts so far.</p>
     <p>
