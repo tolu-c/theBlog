@@ -14,6 +14,12 @@
     {% endif %}
     </p>
     {{ post.body|markdown }}
+
+    <br />
+    <form method="post" action='{% url 'blog:post_like' post.publish.year, post.publish.month, post.publish.day, post.slug %}'>
+        {% csrf_token %}
+        <button type="submit" name='post_id' value='{{ post.id }}'>Like</button>
+    </form>
     <p>
         <a href="{% url "blog:post_share" post.id %}">
             Share this post

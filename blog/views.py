@@ -1,6 +1,7 @@
 from email.mime import message
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import Post, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EmailPostForm, CommentForm, PostAddform, SearchForm
@@ -118,3 +119,10 @@ def post_search(request):
                 search=search_vector, rank=SearchRank(search_vector, search_query)).filter(rank__gte=0.3).order_by('-rank')
 
     return render(request, 'blog/post/search.html', {'form': form, 'query': query, 'results': results})
+
+
+def post_like(request, year, month, day, post, slug):
+    post = get_object_or_404(Post, status='published', slug=slug, id=request.POST.get(
+        'post_id'), publish__year=year, publish__month=month, publish__day=day)
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('blog:post_detail', args=[str(slug)]))

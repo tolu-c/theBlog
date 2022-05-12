@@ -30,6 +30,7 @@ class Post(models.Model):
     objects = models.Manager()
     published = PublishedManager()
     tags = TaggableManager()
+    likes = models.ManyToManyField(User, related_name='blog_posts_likes')
 
     class Meta:
         ordering = ('-publish',)
